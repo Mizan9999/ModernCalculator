@@ -1,6 +1,7 @@
 #importing
 import tkinter
 from tkinter import messagebox
+import tkinter.messagebox
 import customtkinter
 
 #software screen size
@@ -24,12 +25,16 @@ def clear_fun():
 
 #equation function
 def calculate():
-    
-        equation = entry.get()
-        new_equation = equation.replace("x","*")
-        result = eval(new_equation)
-        clear_fun()
-        entry.insert(0, result)
+        try:
+            equation = entry.get()
+            new_equation = equation.replace("x","*")
+            result = eval(new_equation)
+            clear_fun()
+            entry.insert(0, result)
+        except ZeroDivisionError:
+             tkinter.messagebox.showerror("Error!!", "Can't Divide by 0")
+        except:
+             tkinter.messagebox.showerror("Error!!","Your Enter Invalid Value")
 
 
 
